@@ -1,0 +1,21 @@
+<h1>Lista de propietarios</h1>
+
+{% if propietarios %}
+    <ul>
+        {% for item in propietarios %}
+        <li> {{item.nombre}} 
+            <ul>
+                <li>
+                    Numero de apartamento: {{item.nro_apartamento}}
+                </li>
+                <li>
+                    Telefono: {{item.telefono}}
+                </li>
+                <li>
+                    Correo electrónico: {{item.email}}
+                </li>
+            </ul>
+        </li>
+        {%endfor%}
+    </ul>
+{%endif%}
