@@ -25,3 +25,19 @@ def mostrar_propietario(request):
         'propietarios' : propietarios
     }
     return render(request, 'registro_vehiculos/mostrar_propietarios.html',context)
+def agregar_vehiculo(request, propietario_id):
+    propietario = Propietario.objects.get(pk=propietario_id)
+    context = {
+        'propietario':propietario
+    }
+
+    if request.method == 'POST':
+        nom_propietario = request.POST.get('nom_propietario')
+        matricula = request.POST.get('matricula')
+        marca = request.POST.get('marca')
+        modelo = request.POST.get('modelo')
+        color = request.POST.get('color')
+        vehiculo = Vehiculo(nom_propietario=nom_propietario,matricula=matricula,marca=marca,modelo=modelo,color=color)
+        vehiculo.save()
+        return redirect('registro_vehiculos:vehiculos')
+    return render(request, 'registro_vehiculos/vehiculos.html', context)
